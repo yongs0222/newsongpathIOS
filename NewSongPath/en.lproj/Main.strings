@@ -1,0 +1,30 @@
+
+/* Class = "UIViewController"; title = "savingpage"; ObjectID = "8rJ-Kc-sve"; */
+"8rJ-Kc-sve.title" = "savingpage";
+
+/* Class = "UISegmentedControl"; NwD-Cf-lJG.segmentTitles[0] = "한글"; ObjectID = "NwD-Cf-lJG"; */
+"NwD-Cf-lJG.segmentTitles[0]" = "한글";
+
+/* Class = "UISegmentedControl"; NwD-Cf-lJG.segmentTitles[1] = "묵상"; ObjectID = "NwD-Cf-lJG"; */
+"NwD-Cf-lJG.segmentTitles[1]" = "묵상";
+
+/* Class = "UISegmentedControl"; NwD-Cf-lJG.segmentTitles[2] = "ENG"; ObjectID = "NwD-Cf-lJG"; */
+"NwD-Cf-lJG.segmentTitles[2]" = "ENG";
+
+/* Class = "UIViewController"; title = "savingeng"; ObjectID = "aLh-Hv-Q7X"; */
+"aLh-Hv-Q7X.title" = "savingeng";
+
+/* Class = "UITabBarItem"; title = "Home"; ObjectID = "acW-dT-cKf"; */
+"acW-dT-cKf.title" = "Home";
+
+/* Class = "UIViewController"; title = "savingkor"; ObjectID = "bAa-sv-aeS"; */
+"bAa-sv-aeS.title" = "savingkor";
+
+/* Class = "UITabBarItem"; title = "Saving"; ObjectID = "cPa-gy-q4n"; */
+"cPa-gy-q4n.title" = "Saving";
+
+/* Class = "UITabBarItem"; title = "Sending"; ObjectID = "e5Y-Dj-VpW"; */
+"e5Y-Dj-VpW.title" = "Sending";
+
+/* Class = "UITabBarItem"; title = "Serving"; ObjectID = "i5G-BA-gdG"; */
+"i5G-BA-gdG.title" = "Serving";
