@@ -10,6 +10,7 @@
 		2624C43F23C8B2C700E2B8C0 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2624C43E23C8B2C700E2B8C0 /* AppDelegate.swift */; };
 		2624C44823C8B2C700E2B8C0 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 2624C44623C8B2C700E2B8C0 /* Main.storyboard */; };
 		2624C44A23C8B2DA00E2B8C0 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 2624C44923C8B2DA00E2B8C0 /* Assets.xcassets */; };
+		35B215C3243CF0F5009B8B45 /* .gitignore in Resources */ = {isa = PBXBuildFile; fileRef = 35B215C2243CF0F4009B8B45 /* .gitignore */; };
 		6D1F7BEE23C95F5900F24692 /* serving.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6D1F7BED23C95F5900F24692 /* serving.swift */; };
 		6D1F7BF023C95F6600F24692 /* sending.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6D1F7BEF23C95F6600F24692 /* sending.swift */; };
 		6D1F7BF223C95F7400F24692 /* notification.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6D1F7BF123C95F7400F24692 /* notification.swift */; };
@@ -31,6 +32,7 @@
 		2624C44923C8B2DA00E2B8C0 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		2624C44E23C8B2DA00E2B8C0 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		2624C45423C8BD0F00E2B8C0 /* NewSongPath.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = NewSongPath.entitlements; sourceTree = "<group>"; };
+		35B215C2243CF0F4009B8B45 /* .gitignore */ = {isa = PBXFileReference; lastKnownFileType = text; path = .gitignore; sourceTree = "<group>"; };
 		6D03688C23C93F6B0023BECE /* New Song Path.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "New Song Path.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		6D03688E23C942260023BECE /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Main.strings; sourceTree = "<group>"; };
 		6D03688F23C95CCE0023BECE /* SangSangTitleM.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = SangSangTitleM.ttf; sourceTree = "<group>"; };
@@ -72,6 +74,7 @@
 		2624C43223C8B2C700E2B8C0 = {
 			isa = PBXGroup;
 			children = (
+				35B215C0243CF049009B8B45 /* Git */,
 				2624C43D23C8B2C700E2B8C0 /* NewSongPath */,
 				6D1F7BEC23C95DAA00F24692 /* Resources */,
 				0F553D984BF160E3635AF225 /* Pods */,
@@ -100,6 +103,14 @@
 				6DEEADDE23DD60D70028003D /* setting.swift */,
 			);
 			path = NewSongPath;
+			sourceTree = "<group>";
+		};
+		35B215C0243CF049009B8B45 /* Git */ = {
+			isa = PBXGroup;
+			children = (
+				35B215C2243CF0F4009B8B45 /* .gitignore */,
+			);
+			path = Git;
 			sourceTree = "<group>";
 		};
 		442CA4D0D16F635BC6E89055 /* Frameworks */ = {
@@ -179,6 +190,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				35B215C3243CF0F5009B8B45 /* .gitignore in Resources */,
 				2624C44A23C8B2DA00E2B8C0 /* Assets.xcassets in Resources */,
 				6DAF410023D4E2A500CC3F21 /* GoogleService-Info.plist in Resources */,
 				6DDD815623C90F580004AA7E /* Splash.storyboard in Resources */,
