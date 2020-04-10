@@ -42,6 +42,8 @@ class track1: UIViewController {
     @IBOutlet weak var B30: UIButton!
     @IBOutlet weak var B31: UIButton!
     
+    
+    var checkImage = UIImage(named: "checkmark")! as UIImage
     var check = [
         "1": false,
         "2": false,
@@ -112,32 +114,26 @@ class track1: UIViewController {
         B31    .setTitle("    31    ", for: .normal)
         
         
-        //        var check = UserDefaults.standard.object(forKey: "test") as? [String:Bool] ?? [String:Bool]()
         
     }
     
     
     @IBAction func buttonAction(sender: UIButton) {
         let test =  String(sender.tag)
-        let checkImage = UIImage(named: "checkmark")! as UIImage
         
-                var check = UserDefaults.standard.object(forKey: "test") as? [String:Bool] ?? [String:Bool]()
+//        var check = UserDefaults.standard.object(forKey: "test") as? [String:Bool] ?? [String:Bool]()
         
-            if check[test]! {
-                check[test] = false
-                sender.setImage(nil, for: .normal)
-                sender.setTitle(test, for: .normal)
-                sender.isSelected = false
-                
-            }else{
-                check[test] = true
-                sender.setImage(checkImage, for: .normal)
-                sender.setTitle(nil, for: .normal)
-                sender.isSelected = true
-            }
+        if check[test]!{
+            check[test] = false
+            sender.setImage(nil, for: .normal)
+            sender.setTitle(test, for: .normal)
+        }else{
+            check[test] = true
+            sender.setImage(checkImage, for: .normal)
+            sender.setTitle(nil, for: .normal)
+        }
+                UserDefaults.standard.set(check, forKey: "test")
         
-        
-        UserDefaults.standard.set(check, forKey: "test")
     }
     
     override func didReceiveMemoryWarning() {
