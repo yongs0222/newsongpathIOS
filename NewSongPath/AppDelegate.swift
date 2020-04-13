@@ -52,12 +52,6 @@ extension AppDelegate : UNUserNotificationCenterDelegate {
     // Receive displayed notifications for iOS 10 devices.
     
     func userNotificationCenter(_ center: UNUserNotificationCenter, willPresent notification: UNNotification, withCompletionHandler completionHandler: @escaping (UNNotificationPresentationOptions) -> Void) {
-        //        let userInfo = notification.request.content.userInfo
-        // Print message ID.
-        //        print("Message ID: \(userInfo["gcm.message_id"]!)")
-        
-        // Print full message.
-        //        print("%@", userInfo)
         
     }
     

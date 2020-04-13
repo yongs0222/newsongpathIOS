@@ -1,0 +1,6 @@
+framework module Pods_NewSongPath {
+  umbrella header "Pods-NewSongPath-umbrella.h"
+
+  export *
+  module * { export * }
+}
