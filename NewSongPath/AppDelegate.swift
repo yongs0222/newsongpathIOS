@@ -9,6 +9,7 @@
 import UIKit
 import Firebase
 import UserNotifications
+import FirebaseMessaging
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
@@ -43,7 +44,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         
         return true
     }
-    
+   
 }
 
 @available(iOS 10, *)
@@ -63,3 +64,20 @@ extension AppDelegate : MessagingDelegate {
         print("%@", remoteMessage.appData)
     }
 }
+
+
+//
+//func extractYoutubeIdFromLink(link: String) -> String? {
+//    let pattern = "((?<=(v|V)/)|(?<=be/)|(?<=(\\?|\\&)v=)|(?<=embed/))([\\w-]++)"
+//    guard let regExp = try? NSRegularExpression(pattern: pattern, options: .caseInsensitive) else {
+//        return nil
+//    }
+//    let nsLink = link as NSString
+//    let options = NSRegularExpression.MatchingOptions(rawValue: 0)
+//    let range = NSRange(location: 0, length: nsLink.length)
+//    let matches = regExp.matches(in: link as String, options:options, range:range)
+//    if let firstMatch = matches.first {
+//        return nsLink.substring(with: firstMatch.range)
+//    }
+//    return nil
+//}

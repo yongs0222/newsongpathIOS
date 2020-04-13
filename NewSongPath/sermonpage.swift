@@ -26,10 +26,12 @@ class sermonpage: UIViewController {
             } else {
                 do {
                     let contents = try String(contentsOf: URL!)
-                    var link = contents.split(separator: "=")
-                    
+                    let link = contents.split(separator: "=")
+
+                    let playerVars = ["playsinline": 1, "autohide": 1, "showinfo": 0, "controls":1, "origin" : "http://youtube.com"] as [String : Any] // 0: will play video in fullscreen
+
                     // 여기서부터 하시면 됩니다 link[1]이 유튜브 아이디입니다
-                    self.ytplayer.load(withVideoId:String(link[1]))
+                    self.ytplayer.load(withVideoId:String(link[1]),playerVars: playerVars)
                 } catch {
                     
                 }

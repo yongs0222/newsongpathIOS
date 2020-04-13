@@ -1,5 +1,5 @@
 //
-//  setting.swift
+//  TrackActivity.swift
 //  NewSongPath
 //
 //  Created by Cherish Park on 1/25/20.
@@ -9,7 +9,7 @@
 
 import UIKit
 
-class setting: UITableViewController{
+class settings: UITableViewController{
 
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(true)

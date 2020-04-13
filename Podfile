@@ -9,7 +9,7 @@ target 'NewSongPath' do
 pod 'Firebase/Core'
 pod 'Firebase/Storage'
 #pod 'Firebase/Analytics'
-
+pod 'FSCalendar'
 pod 'Firebase/Messaging'
 pod "YoutubePlayer-in-WKWebView", "~> 0.2.0"
 pod 'SwiftSoup'

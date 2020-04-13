@@ -114,29 +114,32 @@ class track1: UIViewController {
         
         //        var check = UserDefaults.standard.object(forKey: "test") as? [String:Bool] ?? [String:Bool]()
         
+        let check = UserDefaults.standard.object(forKey: "test") as? [String:Bool] ?? [String:Bool]()
+        for (key, value) in check{
+            if value == true{
+        //로딩후, button check value > true 인거 디스플레이
+        }
     }
-    
+    }
     
     @IBAction func buttonAction(sender: UIButton) {
         let test =  String(sender.tag)
         let checkImage = UIImage(named: "checkmark")! as UIImage
         
-                var check = UserDefaults.standard.object(forKey: "test") as? [String:Bool] ?? [String:Bool]()
-        
-            if check[test]! {
-                check[test] = false
-                sender.setImage(nil, for: .normal)
-                sender.setTitle(test, for: .normal)
-                sender.isSelected = false
-                
-            }else{
-                check[test] = true
-                sender.setImage(checkImage, for: .normal)
-                sender.setTitle(nil, for: .normal)
-                sender.isSelected = true
-            }
         
         
+        if check[test]! {
+            check[test] = false
+            sender.setImage(nil, for: .normal)
+            sender.setTitle(test, for: .normal)
+            sender.isSelected = false
+            
+        }else{
+            check[test] = true
+            sender.setImage(checkImage, for: .normal)
+            sender.setTitle(nil, for: .normal)
+            sender.isSelected = true
+        }
         UserDefaults.standard.set(check, forKey: "test")
     }
     

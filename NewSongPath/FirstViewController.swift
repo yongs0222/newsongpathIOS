@@ -73,16 +73,14 @@ class FirstViewController: UIViewController, UIWebViewDelegate {
     }
     
     @IBAction func joobopage(_ sender: Any) {
-        //"http://www.newsongdallas.org/tong/s_board/list.asp?board_seq=6&chk_ON=undefined&lef=02&sublef=undefined")
         if let url = URL(string:
             "http://www.newsongdallas.org/tong/weekly/weekly_V2.asp?"){
             UIApplication.shared.open(url)
         }
     }
     @IBAction func goodnewspage(_ sender: Any) {
-        //"http://www.newsongdallas.org/tong/s_board/list.asp?board_seq=6&chk_ON=undefined&lef=02&sublef=undefined")
         if let url = URL(string:
-            "http://url.kr/NlTV9c"){
+            "http://www.newsongdallas.org/tong/s_board/list.asp?board_seq=30&board_sub_seq=1&view_sub_seq=0"){
             UIApplication.shared.open(url)
         }
     }

@@ -313,7 +313,7 @@ class serving: UIViewController{
         servingTextField.text = servingSchedule_kor[result]
         
         formatter.dateFormat = "MM_dd_yyyy"
-        let result_year = formatter.string(from: date)
+//        let result_year = formatter.string(from: date)
         textViewQT.isEditable = false
         
 //        let reference = Storage.storage().reference().child(result_year + "_serving.txt")
