@@ -7,25 +7,18 @@
 //
 
 import UIKit
-import SwiftSoup
+import Firebase
 
 class serving: UIViewController{
     
-    
-    
     @IBOutlet weak var servingpage: UISegmentedControl!
-    
     @IBOutlet weak var servingTextField: UITextField!
-    
     @IBOutlet weak var textViewQT: UITextView!
     @IBOutlet weak var servingkor: UIView!
     @IBOutlet weak var servingeng: UIView!
     
-    var builder: StringBuilder!
-    var htmlContentInStringFormat = ""
-    
     var servingSchedule_kor = [
-       // 2019 년
+        // 2020 년
         // 1 월
         "01_01":"마태복음 1-2장, 잠언 1장","01_02":"마태복음 3-4장, 잠언 2장","01_03":"마태복음 5-6장, 잠언 3장","01_04":"마태복음 7-8장, 잠언 4장",
         "01_05":"마태복음 9-10장, 잠언 5장","01_06":"마태복음 11-12장, 잠언 6장","01_07":"마태복음 13-14장, 잠언 7장","01_08":"마태복음 15-16장, 잠언 8장",
@@ -35,7 +28,7 @@ class serving: UIViewController{
         "01_21":"마가복음 13-14장, 잠언 21장","01_22":"마가복음 15-16장, 잠언 22장","01_23":"누가복음 1-2장, 잠언 23장","01_24":"누가복음 3-4장, 잠언 24장",
         "01_25":"누가복음 5-6장, 잠언 25장","01_26":"누가복음 7-8장, 잠언 26장","01_27":"누가복음 9-10장, 잠언 27장","01_28":"누가복음 11-12장, 잠언 28장",
         "01_29":"누가복음 13-14장, 잠언 29장","01_30":"누가복음 15-16장, 잠언 30장","01_31":"누가복음 17-18장, 잠언 31장",
-
+        
         // 2 월
         "02_01":"누가복음 19-20장, 시편 1장","02_02":"누가복음 21-22장, 시편 2장","02_03":"누가복음 23-24장, 시편 3장",
         "02_04":"요한복음 1-2장, 시편 4장","02_05":"요한복음 3-4장, 시편 5장","02_06":"요한복음 5-6장, 시편 6장",
@@ -47,7 +40,7 @@ class serving: UIViewController{
         "02_22":"사도행전 15-16장, 시편 22장","02_23":"사도행전 17-18장, 시편 23장","02_24":"사도행전 19-20장, 시편 24장",
         "02_25":"사도행전 21-22장, 시편 25장","02_26":"사도행전 23-24장, 시편 26장","02_27":"사도행전 25-26장, 시편 27장",
         "02_28":"사도행전 27-28장, 시편 28장","02_29":"로마서 1-2장, 시편 29장",
-
+        
         // 3 월
         "03_01":"로마서 3-4장, 시편 30장","03_02":"로마서 5-6장, 시편 31장","03_03":"로마서 7-8장, 시편 32장","03_04":"로마서 9-10장, 시편 33장",
         "03_05":"로마서 11-12장, 시편 34장","03_06":"로마서 13-14장, 시편 35장","03_07":"로마서 15-16장, 시편 36장","03_08":"고린도전서 1-2장, 시편 37장",
@@ -57,7 +50,7 @@ class serving: UIViewController{
         "03_21":"고린도후서 11-12장, 시편 51장","03_22":"고린도후서 13장, 시편 52장","03_23":"갈라디아서 1-2장, 시편 53장","03_24":"갈라디아서 3-4장, 시편 54장",
         "03_25":"갈라디아서 5-6장, 시편 55장","03_26":"에베소서 1-2장, 시편 56장","03_27":"에베소서 3-4장, 시편 57장","03_28":"에베소서 5-6장, 시편 58장",
         "03_29":"빌립보서 1-2장, 시편 59장","03_30":"빌립보서 3-4장, 시편 60장","03_31":"골로새서 1-2장, 시편 61장",
-
+        
         // 4 월
         "04_01":"골로새서 3-4장, 시편 62장","04_02":"데살로니가전서 1-2장, 시편 63장","04_03":"데살로니가전서 3-4장, 시편 64장","04_04":"데살로니가전서 5장, 시편 65장",
         "04_05":"데살로니가후서 1-2장, 시편 66장","04_06":"데살로니가후서 3장, 시편 67장","04_07":"디모데전서 31장, 시편 68장","04_08":"디모데전서 1-2장, 시편 69장",
@@ -67,7 +60,7 @@ class serving: UIViewController{
         "04_21":"히브리서 13장, 시편 84장","04_22":"야고보서 1-2장, 시편 84장","04_23":"야고보서 3-5장, 시편 85장","04_24":"베드로전서 1-2장, 시편 86장",
         "04_25":"베드로전서 3-5장, 시편 87장","04_26":"베드로후서 1-3장, 시편 88장","04_27":"요한일서 1-2장, 시편 89장","04_28":"요한일서 3-5장, 90장",
         "04_29":"요한이서 1장, 시편 91-92장","04_30":"요한삼서 1장, 시편 93-94장",
-
+        
         // 5 월
         "05_01":"유다서 1장, 잠언 1장","05_02":"요한계시록 1-2장, 잠언 2장","05_03":"요한계시록 3-4장, 잠언 3장","05_04":"요한계시록 5-6장, 잠언 4장",
         "05_05":"요한계시록 7-8장, 잠언 5장","05_06":"요한계시록 9-10장, 잠언 6장","05_07":"요한계시록 11-12장, 잠언 7장","05_08":"요한계시록 13-14장, 잠언 8장",
@@ -77,7 +70,7 @@ class serving: UIViewController{
         "05_21":"창세기 17-18장, 잠언 21장","05_22":"창세기 19-20장, 잠언 22장","05_23":"창세기 21-22장, 잠언 23장","05_24":"창세기 23-24장, 잠언 24장",
         "05_25":"창세기 25-26장, 잠언 25장","05_26":"창세기 27-28장, 잠언 26장","05_27":"창세기 29-30장, 잠언 27장","05_28":"창세기 31-32장, 잠언 28장",
         "05_29":"창세기 33-34장, 잠언 29장","05_30":"창세기 35-36장, 잠언 30장","05_31":"창세기 37-38장, 잠언 31장",
-
+        
         // 6 월
         "06_01":"창세기 39-40장, 시편 95장","06_02":"창세기 41-42장, 시편 96장","06_03":"창세기 43-44장, 시편 97장","06_04":"창세기 45-46장, 시편 98장",
         "06_05":"창세기 47-48장, 시편 99장","06_06":"창세기 49-50장, 시편 100장","06_07":"출애굽기 1-2장, 시편 101장","06_08":"출애굽기 3-4장, 시편 102장",
@@ -87,7 +80,7 @@ class serving: UIViewController{
         "06_21":"출애굽기 29-30장, 시편 115장","06_22":"출애굽기 31-32장, 시편 116장","06_23":"출애굽기 33-34장, 시편 117장","06_24":"출애굽기 35-36장, 시편 118장",
         "06_25":"출애굽기 37-38장, 시편 119장","06_26":"출애굽기 39-40장, 시편 120장","06_27":"레위기 1-2장, 시편 121장","06_28":"레위기 3-4장, 시편 122장",
         "06_29":"레위기 5-6장, 시편 123장","06_30":"레위기 7-8장, 시편 124장",
-
+        
         // 7 월
         "07_01":"레위기 9-10장, 시편 125장","07_02":"레위기 11-12장, 시편 126장","07_03":"레위기 13-14장, 시편 127장","07_04":"레위기 15-16장, 시편 128장",
         "07_05":"레위기 17-18장, 시편 129장","07_06":"레위기 19-20장, 시편 130장","07_07":"레위기 21-22장, 시편 131장","07_08":"레위기 23-24장, 시편 132장",
@@ -97,7 +90,7 @@ class serving: UIViewController{
         "07_21":"민수기 21-22장, 시편 146장","07_22":"민수기 23-24장, 시편 147장","07_23":"민수기 25-26장, 시편 148","07_24":"민수기 27-28장, 시편 149장",
         "07_25":"민수기 29-30장, 시편 150장","07_26":"민수기 31-32장, 잠언 26장","07_27":"민수기 33-34장, 잠언 27장","07_28":"민수기 35-36장, 잠언 28장",
         "07_29":"신명기 1-2장, 잠언 29장","07_30":"신명기 3-4장, 잠언 30장","07_31":"신명기 5-6장, 잠언 31장",
-
+        
         // 8 월
         "08_01":"신명기 7-8장, 잠언 1장","08_02":"신명기 9-10장, 잠언 2장","08_03":"신명기 11-12장, 잠언 3장","08_04":"신명기 13-14장, 잠언 4장",
         "08_05":"신명기 15-16장, 잠언 5장","08_06":"신명기 17-18장, 잠언 6장","08_07":"신명기 19-20장, 잠언 7장","08_08":"신명기 21-22장, 잠언 8장",
@@ -107,7 +100,7 @@ class serving: UIViewController{
         "08_21":"여호수아 13-14장, 잠언 21장","08_22":"여호수아 15-16장, 잠언 22장","08_23":"여호수아 17-18장, 잠언 23장","08_24":"여호수아 19-20장, 잠언 24장",
         "08_25":"여호수아 21-22장, 잠언 25장","08_26":"여호수아 23-24장, 잠언 26장","08_27":"사사기 1-2장, 잠언 27장","08_28":"사사기 3-4장, 잠언 28장",
         "08_29":"사사기 5-6장, 잠언 29장","08_30":"사사기 7-8장, 잠언 30장","08_31":"사사기 9-10장, 잠언 31장",
-
+        
         // 9 월
         "09_01":"사사기 11-12장, 시편 1장","09_02":"사사기 13-14장, 시편 2장","09_03":"사사기 15-16장, 시편 3장","09_04":"사사기 17-18장, 시편 4장",
         "09_05":"사사기 19-20장, 시편 5장","09_06":"사사기 21장, 시편 6-7장","09_07":"룻기 1-2장, 시편 8-9장","09_08":"룻기 3-4장, 시편 10-11장",
@@ -117,7 +110,7 @@ class serving: UIViewController{
         "09_21":"사무엘상 25-26장, 시편 24장","09_22":"사무엘상 27-28장, 시편 25장","09_23":"사무엘상 29-30장, 시편 26장","09_24":"사무엘상 31장, 시편 27-28장",
         "09_25":"사무엘하 1-2장, 시편 29장","09_26":"사무엘하 3-4장, 시편 30장","09_27":"사무엘하 5-6장, 시편 31장","09_28":"사무엘하 7-8장, 시편 32장",
         "09_29":"사무엘하 9-10장, 시편 33장","09_30":"사무엘하 11-12장, 시편 34장",
-
+        
         // 10 월
         "10_01":"사무엘하 13-14장, 시편 35장","10_02":"사무엘하 15-16장, 시편 36장","10_03":"사무엘하 17-18장, 시편 37장","10_04":"사무엘하 19-20장, 시편 38장",
         "10_05":"사무엘하 21-22장, 시편 39장","10_06":"사무엘하 23-24장, 시편 40장","10_07":"열왕기상 1-2장, 시편 41장","10_08":"열왕기상 3-4장, 시편 42장",
@@ -127,7 +120,7 @@ class serving: UIViewController{
         "10_21":"열왕기하 7-8장, 시편 55장","10_22":"열왕기하 9-10장, 시편 56장","10_23":"열왕기하 11-12장, 시편 57장","10_24":"열왕기하 13-14장, 시편 58장",
         "10_25":"열왕기하 15-16장, 시편 59장","10_26":"열왕기하 17-18장, 시편 60장","10_27":"열왕기하 19-20장, 시편 61장","10_28":"열왕기하 21-22장, 시편 62장",
         "10_29":"열왕기하 23-24장, 시편 63장","10_30":"열왕기하 25장, 시편 64장","10_31":"역대상 1-2장, 시편 65장",
-
+        
         // 11 월
         "11_01":"역대상 3-4장, 시편 66장","11_02":"역대상 5-6장, 시편 67장","11_03":"역대상 7-8장, 시편 68장","11_04":"역대상 9-10장, 시편 69장",
         "11_05":"역대상 11-12장, 시편 70장","11_06":"역대상 13-14장, 시편 71장","11_07":"역대상 15-16장, 시편 72장","11_08":"역대상 17-18장, 시편 73장",
@@ -137,7 +130,7 @@ class serving: UIViewController{
         "11_21":"역대하 13-14장, 시편 87장","11_22":"역대하 15-16장, 시편 88장","11_23":"역대하 17-18장, 시편 89장","11_24":"역대하 19-20장, 시편 90장",
         "11_25":"역대하 21-22장, 시편 91장","11_26":"역대하 23-24장, 시편 92장","11_27":"역대하 25-26장, 시편 93장","11_28":"역대하 27-28장, 시편 94장",
         "11_29":"역대하 29-30장, 시편 95장","11_30":"역대하 31-32장, 시편 96장",
-
+        
         // 12 월
         "12_01":"역대하 33-34장, 시편 97장","12_02":"역대하 35-36장, 시편 98장","12_03":"에스라 1-2장, 시편 99장","12_04":"에스라 3-4장, 시편 100장",
         "12_05":"에스라 5-6장, 시편 101장","12_06":"에스라 7-8장, 시편 102장","12_07":"에스라 9-10장, 시편 103장","12_08":"느헤미야 1-2장, 시편 104장",
@@ -147,9 +140,9 @@ class serving: UIViewController{
         "12_21":"욥기 3-4장, 시편 117장","12_22":"욥기 5-6장, 시편 118장","12_23":"욥기 7-8장, 시편 119장","12_24":"욥기 9-10장, 시편 120장",
         "12_25":"욥기 11-12장, 시편 121장","12_26":"욥기 13-14장, 시편 122장","12_27":"욥기 15-16장, 시편 123장","12_28":"욥기 17-18장, 시편 124장",
         "12_29":"욥기 19-20장, 시편 125장","12_30":"욥기 21-22장, 시편 126장","12_31":"욥기 23-24장, 시편 127장"
-]
+    ]
     var servingSchedule_eng = [
-      // 2019 년
+        // 2019 년
         // 1 월
         "01_01":"Matthew 1-2, Proverbs 1","01_02":"Matthew 3-4, Proverbs 2","01_03":"Matthew 5-6, Proverbs 3","01_04":"Matthew 7-8, Proverbs 4",
         "01_05":"Matthew 9-10, Proverbs 5","01_06":"Matthew 11-12, Proverbs 6","01_07":"Matthew 13-14, Proverbs 7","01_08":"Matthew 15-16, Proverbs 8",
@@ -159,7 +152,7 @@ class serving: UIViewController{
         "01_21":"Mark 13-14, Proverbs 21","01_22":"Mark 15-16, Proverbs 22","01_23":"Luke 1-2, Proverbs 23","01_24":"Luke 3-4, Proverbs 24",
         "01_25":"Luke 5-6, Proverbs 25","01_26":"Luke 7-8, Proverbs 26","01_27":"Luke 9-10, Proverbs 27","01_28":"Luke 11-12, Proverbs 28",
         "01_29":"Luke 13-14, Proverbs 29","01_30":"Luke 15-16, Proverbs 30","01_31":"Luke 17-18, Proverbs 31",
-
+        
         // 2 월
         "02_01":"Luke 19-20, Psalms 1","02_02":"Luke 21-22, Psalms 2","02_03":"Luke 23-24, Psalms 3",
         "02_04":"John 1-2, Psalms 4","02_05":"John 3-4, Psalms 5","02_06":"John 5-6, Psalms 6",
@@ -171,7 +164,7 @@ class serving: UIViewController{
         "02_22":"Acts 15-16, Psalms 22","02_23":"Acts 17-18, Psalms 23","02_24":"Acts 19-20, Psalms 24",
         "02_25":"Acts 21-22, Psalms 25","02_26":"Acts 23-24, Psalms 26","02_27":"Acts 25-26, Psalms 27",
         "02_28":"Acts 27-28, Psalms 28","02_29":"Romans 1-2, Psalms 29",
-
+        
         // 3 월
         "03_01":"Romans 3-4, Psalms 30","03_02":"Romans 5-6, Psalms 31","03_03":"Romans 7-8, Psalms 32","03_04":"Romans 9-10, Psalms 33",
         "03_05":"Romans 11-12, Psalms 34","03_06":"Romans 13-14, Psalms 35","03_07":"Romans 15-16, Psalms 36","03_08":"1Corinthians 1-2, Psalms 37",
@@ -181,7 +174,7 @@ class serving: UIViewController{
         "03_21":"2Corinthians 11-12, Psalms 51","03_22":"2Corinthians 13, Psalms 52","03_23":"Galatians 1-2, Psalms 53","03_24":"Galatians 3-4, Psalms 54",
         "03_25":"Galatians 5-6, Psalms 55","03_26":"Ephesians 1-2, Psalms 56","03_27":"Ephesians 3-4, Psalms 57","03_28":"Ephesians 5-6, Psalms 58",
         "03_29":"Philippians 1-2, Psalms 59","03_30":"Philippians 3-4, Psalms 60","03_31":"Colossians 1-2, Psalms 61",
-
+        
         // 4 월
         "04_01":"Colossians 3-4, Psalms 62","04_02":"1Thessalonians 1-2, Psalms 63","04_03":"1Thessalonians 3-4, Psalms 64","04_04":"1Thessalonians 5, Psalms 65",
         "04_05":"2Thessalonians 1-2, Psalms 66","04_06":"2Thessalonians 3, Psalms 67","04_07":"1Timothy 31, Psalms 68","04_08":"1Timothy 1-2, Psalms 69",
@@ -191,7 +184,7 @@ class serving: UIViewController{
         "04_21":"Hebrews 13, Psalms 84","04_22":"James 1-2, Psalms 84","04_23":"James 3-5, Psalms 85","04_24":"1Peter 1-2, Psalms 86",
         "04_25":"1Peter 3-5, Psalms 87","04_26":"2Peter 1-3, Psalms 88","04_27":"1John 1-2, Psalms 89","04_28":"1John 3-5, 90",
         "04_29":"2John 1, Psalms 91-92","04_30":"3John 1, Psalms 93-94",
-
+        
         // 5 월
         "05_01":"Jude 1, Proverbs 1","05_02":"Revelation 1-2, Proverbs 2","05_03":"Revelation 3-4, Proverbs 3","05_04":"Revelation 5-6, Proverbs 4",
         "05_05":"Revelation 7-8, Proverbs 5","05_06":"Revelation 9-10, Proverbs 6","05_07":"Revelation 11-12, Proverbs 7","05_08":"Revelation 13-14, Proverbs 8",
@@ -201,7 +194,7 @@ class serving: UIViewController{
         "05_21":"Genesis 17-18, Proverbs 21","05_22":"Genesis 19-20, Proverbs 22","05_23":"Genesis 21-22, Proverbs 23","05_24":"Genesis 23-24, Proverbs 24",
         "05_25":"Genesis 25-26, Proverbs 25","05_26":"Genesis 27-28, Proverbs 26","05_27":"Genesis 29-30, Proverbs 27","05_28":"Genesis 31-32, Proverbs 28",
         "05_29":"Genesis 33-34, Proverbs 29","05_30":"Genesis 35-36, Proverbs 30","05_31":"Genesis 37-38, Proverbs 31",
-
+        
         // 6 월
         "06_01":"Genesis 39-40, Psalms 95","06_02":"Genesis 41-42, Psalms 96","06_03":"Genesis 43-44, Psalms 97","06_04":"Genesis 45-46, Psalms 98",
         "06_05":"Genesis 47-48, Psalms 99","06_06":"Genesis 49-50, Psalms 100","06_07":"Exodus 1-2, Psalms 101","06_08":"Exodus 3-4, Psalms 102",
@@ -211,7 +204,7 @@ class serving: UIViewController{
         "06_21":"Exodus 29-30, Psalms 115","06_22":"Exodus 31-32, Psalms 116","06_23":"Exodus 33-34, Psalms 117","06_24":"Exodus 35-36, Psalms 118",
         "06_25":"Exodus 37-38, Psalms 119","06_26":"Exodus 39-40, Psalms 120","06_27":"Leviticus 1-2, Psalms 121","06_28":"Leviticus 3-4, Psalms 122",
         "06_29":"Leviticus 5-6, Psalms 123","06_30":"Leviticus 7-8, Psalms 124",
-
+        
         // 7 월
         "07_01":"Leviticus 9-10, Psalms 125","07_02":"Leviticus 11-12, Psalms 126","07_03":"Leviticus 13-14, Psalms 127","07_04":"Leviticus 15-16, Psalms 128",
         "07_05":"Leviticus 17-18, Psalms 129","07_06":"Leviticus 19-20, Psalms 130","07_07":"Leviticus 21-22, Psalms 131","07_08":"Leviticus 23-24, Psalms 132",
@@ -221,7 +214,7 @@ class serving: UIViewController{
         "07_21":"Numbers 21-22, Psalms 146","07_22":"Numbers 23-24, Psalms 147","07_23":"Numbers 25-26, Psalms 148","07_24":"Numbers 27-28, Psalms 149",
         "07_25":"Numbers 29-30, Psalms 150","07_26":"Numbers 31-32, Proverbs 26","07_27":"Numbers 33-34, Proverbs 27","07_28":"Numbers 35-36, Proverbs 28",
         "07_29":"Deuteronomy 1-2, Proverbs 29","07_30":"Deuteronomy 3-4, Proverbs 30","07_31":"Deuteronomy 5-6, Proverbs 31",
-
+        
         // 8 월
         "08_01":"Deuteronomy 7-8, Proverbs 1","08_02":"Deuteronomy 9-10, Proverbs 2","08_03":"Deuteronomy 11-12, Proverbs 3","08_04":"Deuteronomy 13-14, Proverbs 4",
         "08_05":"Deuteronomy 15-16, Proverbs 5","08_06":"Deuteronomy 17-18, Proverbs 6","08_07":"Deuteronomy 19-20, Proverbs 7","08_08":"Deuteronomy 21-22, Proverbs 8",
@@ -231,7 +224,7 @@ class serving: UIViewController{
         "08_21":"Joshua 13-14, Proverbs 21","08_22":"Joshua 15-16, Proverbs 22","08_23":"Joshua 17-18, Proverbs 23","08_24":"Joshua 19-20, Proverbs 24",
         "08_25":"Joshua 21-22, Proverbs 25","08_26":"Joshua 23-24, Proverbs 26","08_27":"Judges 1-2, Proverbs 27","08_28":"Judges 3-4, Proverbs 28",
         "08_29":"Judges 5-6, Proverbs 29","08_30":"Judges 7-8, Proverbs 30","08_31":"Judges 9-10, Proverbs 31",
-
+        
         // 9 월
         "09_01":"Judges 11-12, Psalms 1","09_02":"Judges 13-14, Psalms 2","09_03":"Judges 15-16, Psalms 3","09_04":"Judges 17-18, Psalms 4",
         "09_05":"Judges 19-20, Psalms 5","09_06":"Judges 21, Psalms 6-7","09_07":"Ruth 1-2, Psalms 8-9","09_08":"Ruth 3-4, Psalms 10-11",
@@ -241,7 +234,7 @@ class serving: UIViewController{
         "09_21":"1Samuel 25-26, Psalms 24","09_22":"1Samuel 27-28, Psalms 25","09_23":"1Samuel 29-30, Psalms 26","09_24":"1Samuel 31, Psalms 27-28",
         "09_25":"2Samuel 1-2, Psalms 29","09_26":"2Samuel 3-4, Psalms 30","09_27":"2Samuel 5-6, Psalms 31","09_28":"2Samuel 7-8, Psalms 32",
         "09_29":"2Samuel 9-10, Psalms 33","09_30":"2Samuel 11-12, Psalms 34",
-
+        
         // 10 월
         "10_01":"2Samuel 13-14, Psalms 35","10_02":"2Samuel 15-16, Psalms 36","10_03":"2Samuel 17-18, Psalms 37","10_04":"2Samuel 19-20, Psalms 38",
         "10_05":"2Samuel 21-22, Psalms 39","10_06":"2Samuel 23-24, Psalms 40","10_07":"1Kings 1-2, Psalms 41","10_08":"1Kings 3-4, Psalms 42",
@@ -251,7 +244,7 @@ class serving: UIViewController{
         "10_21":"2Kings 7-8, Psalms 55","10_22":"2Kings 9-10, Psalms 56","10_23":"2Kings 11-12, Psalms 57","10_24":"2Kings 13-14, Psalms 58",
         "10_25":"2Kings 15-16, Psalms 59","10_26":"2Kings 17-18, Psalms 60","10_27":"2Kings 19-20, Psalms 61","10_28":"2Kings 21-22, Psalms 62",
         "10_29":"2Kings 23-24, Psalms 63","10_30":"2Kings 25, Psalms 64","10_31":"1Chronicles 1-2, Psalms 65",
-
+        
         // 11 월
         "11_01":"1Chronicles 3-4, Psalms 66","11_02":"1Chronicles 5-6, Psalms 67","11_03":"1Chronicles 7-8, Psalms 68","11_04":"1Chronicles 9-10, Psalms 69",
         "11_05":"1Chronicles 11-12, Psalms 70","11_06":"1Chronicles 13-14, Psalms 71","11_07":"1Chronicles 15-16, Psalms 72","11_08":"1Chronicles 17-18, Psalms 73",
@@ -261,7 +254,7 @@ class serving: UIViewController{
         "11_21":"2Chronicles 13-14, Psalms 87","11_22":"2Chronicles 15-16, Psalms 88","11_23":"2Chronicles 17-18, Psalms 89","11_24":"2Chronicles 19-20, Psalms 90",
         "11_25":"2Chronicles 21-22, Psalms 91","11_26":"2Chronicles 23-24, Psalms 92","11_27":"2Chronicles 25-26, Psalms 93","11_28":"2Chronicles 27-28, Psalms 94",
         "11_29":"2Chronicles 29-30, Psalms 95","11_30":"2Chronicles 31-32, Psalms 96",
-
+        
         // 12 월
         "12_01":"2Chronicles 33-34, Psalms 97","12_02":"2Chronicles 35-36, Psalms 98","12_03":"Ezra 1-2, Psalms 99","12_04":"Ezra 3-4, Psalms 100",
         "12_05":"Ezra 5-6, Psalms 101","12_06":"Ezra 7-8, Psalms 102","12_07":"Ezra 9-10, Psalms 103","12_08":"Nehemiah 1-2, Psalms 104",
@@ -319,28 +312,24 @@ class serving: UIViewController{
         servingTextField.textAlignment = .center;
         servingTextField.text = servingSchedule_kor[result]
         
+        formatter.dateFormat = "MM_dd_yyyy"
+        let result_year = formatter.string(from: date)
         textViewQT.isEditable = false
         
-        do{
-            let baseUrl = "http://www.newsongdallas.org/tong/s_board/read.asp?board_seq=28&board_sub_seq=1&view_sub_seq=0&seq=2603&lef=&sublef=&page=1&search_select=&search_text="
-            let url = URL(string: baseUrl)!
-            let encoding:UInt =  CFStringConvertEncodingToNSStringEncoding(CFStringEncoding(
-                CFStringEncodings.EUC_KR.rawValue))
-            let html = try String(contentsOf: url, encoding: String.Encoding(rawValue: encoding))
-            
-            let doc: Document = try SwiftSoup.parseBodyFragment(html)
-            
-            //            let title: Elements = try doc.select("div.sboard_cont_details > p") //parent > child: child elements that descend directly from parent, e.g.
-            
-            for titleContents in try! doc.select("div.sboard_cont_details > p") {
-                textViewQT.text = (textViewQT.text ?? "") + "\n" + (try titleContents.text())
-                htmlContentInStringFormat = try titleContents.text()
+//        let reference = Storage.storage().reference().child(result_year + "_serving.txt")
+        let reference = Storage.storage().reference().child("announcement.txt")
+        reference.downloadURL { (URL, error) -> Void in
+            if (error != nil) {
+                print("Error!!!!!!!!!!!!!!!!")
+            } else {
+                do {
+                    let contents = try String(contentsOf: URL!)
+                    self.textViewQT.text = contents
+                } catch {
+                    
+                }
+                
             }
-            
-        } catch Exception.Error(_, let message) {
-            print(message)
-        } catch {
-            print("error")
         }
     }
     

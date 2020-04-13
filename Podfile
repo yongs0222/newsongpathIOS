@@ -7,6 +7,7 @@ target 'NewSongPath' do
 
   # Pods for NewSongPath
 pod 'Firebase/Core'
+pod 'Firebase/Storage'
 #pod 'Firebase/Analytics'
 
 pod 'Firebase/Messaging'

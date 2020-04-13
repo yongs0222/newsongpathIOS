@@ -7,22 +7,18 @@
 //
 
 import UIKit
-import SwiftSoup
+import Firebase
 
 class saving: UIViewController {
+    
     @IBOutlet weak var segmentedToggle: UISegmentedControl!
     @IBOutlet weak var savingTextField: UITextField!
     @IBOutlet weak var savingKor: UIView!
     @IBOutlet weak var savingEng: UIView!
     @IBOutlet weak var textViewQT: UITextView!
     
-    
-    
-    var builder: StringBuilder!
-    var htmlContentInStringFormat = ""
-    
     var savingSchedule_kor = [
-        // 2019 년
+        // 2020 년
         // 1 월
         "01_01":"잠언 1장", "01_02":"잠언 2장", "01_03":"잠언 3장", "01_04":"잠언 4장",
         "01_05":"잠언 5장", "01_06":"잠언 6장", "01_07":"잠언 7장", "01_08":"잠언 8장",
@@ -145,9 +141,9 @@ class saving: UIViewController {
         "12_25": "출애굽기 19장", "12_26": "출애굽기 20장", "12_27": "출애굽기 21장", "12_28": "출애굽기 22장",
         "12_29": "출애굽기 23장", "12_30": "출애굽기 24장", "12_31": "출애굽기 25장",
     ]
-        var savingSchedule_eng = [
-
-        // 2019 년
+    var savingSchedule_eng = [
+        
+        // 2020 년
         // 1 월
         "01_01":"Proverbs 1", "01_02":"Proverbs 2", "01_03":"Proverbs 3", "01_04":"Proverbs 4",
         "01_05":"Proverbs 5", "01_06":"Proverbs 6", "01_07":"Proverbs 7", "01_08":"Proverbs 8",
@@ -315,28 +311,25 @@ class saving: UIViewController {
         savingTextField.textAlignment = .center;
         savingTextField.text = savingSchedule_kor[result]
         
+        formatter.dateFormat = "MM_dd_yyyy"
+        let result_year = formatter.string(from: date)
         textViewQT.isEditable = false
         
-        do{
-            let baseUrl = "http://www.newsongdallas.org/tong/s_board/read.asp?board_seq=28&board_sub_seq=1&view_sub_seq=0&seq=2604&lef=&sublef=&page=1&search_select=&search_text="
-            let url = URL(string: baseUrl)!
-            let encoding:UInt =  CFStringConvertEncodingToNSStringEncoding(CFStringEncoding(
-                CFStringEncodings.EUC_KR.rawValue))
-            let html = try String(contentsOf: url, encoding: String.Encoding(rawValue: encoding))
-            
-            
-            let doc: Document = try SwiftSoup.parseBodyFragment(html)
-            
-            for titleContents in try! doc.select("div.sboard_cont_details > p") {
-                textViewQT.text = (textViewQT.text ?? "") + "\n" + (try titleContents.text())
-                htmlContentInStringFormat = try titleContents.text()
+        let reference = Storage.storage().reference().child(result_year + "_saving.txt")
+        reference.downloadURL { (URL, error) -> Void in
+            if (error != nil) {
+                print("Error!!!!!!!!!!!!!!!!")
+            } else {
+                do {
+                    let contents = try String(contentsOf: URL!)
+                    self.textViewQT.text = contents
+                } catch {
+                    
+                }
+                
             }
-            
-        } catch Exception.Error(_, let message) {
-            print(message)
-        } catch {
-            print("error")
         }
+        
     }
     
     override func didReceiveMemoryWarning() {
