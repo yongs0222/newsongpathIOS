@@ -345,6 +345,11 @@ class saving: UIViewController {
         let uuid = getID().getUUID()
         let temp = dateFormatter.string(from:date)
         Database.database().reference().child("track").child(uuid!).child(temp).setValue(true)//        defaults.set(check, forKey:"saveDate")
+        
+        let alert = UIAlertController(title: "기록 완료", message: "저장되었습니다!", preferredStyle: .alert)
+        alert.addAction(UIAlertAction(title: "Okay", style: .default, handler: nil))
+
+        self.present(alert, animated: true)
     }
     
     override func didReceiveMemoryWarning() {

@@ -10,80 +10,59 @@
 
 import UIKit
 import FSCalendar
+import FirebaseDatabase
 
 class track5: UIViewController, FSCalendarDataSource, FSCalendarDelegate, FSCalendarDelegateAppearance{
     
-    @IBOutlet weak var cal:FSCalendar!
-
+    
+    @IBOutlet weak var cal: FSCalendar!
+    
     var dateFormatter: DateFormatter = {
         let formatter = DateFormatter()
-        formatter.dateFormat = "MM/dd" // yyyy/MM/dd
+        formatter.dateFormat = "yyyy/MM/dd"
         return formatter
     }()
+    var uuid = getID().getUUID()
+
+    var ref = Database.database().reference()
     
-    var check = [
-        "05/01": false,
-        "05/02": false,
-        "05/03": false,
-        "05/04": false,
-        "05/05": false,
-        "05/06": false,
-        "05/07": false,
-        "05/08": false,
-        "05/09": false,
-        "05/10": false,
-        "05/11": false,
-        "05/12": false,
-        "05/13": false,
-        "05/14": false,
-        "05/15": false,
-        "05/16": false,
-        "05/17": false,
-        "05/18": false,
-        "05/19": false,
-        "05/20": false,
-        "05/21": false,
-        "05/22": false,
-        "05/23": false,
-        "05/24": false,
-        "05/25": false,
-        "05/26": false,
-        "05/27": false,
-        "05/28": false,
-        "05/29": false,
-        "05/30": false,
-        "05/31": false,
-    ]
-    
-    
-    var defaults = UserDefaults.standard
-//    var selectedDate: [String] = []
+    var monthRef = Database.database().reference().child("track").childByAutoId()
     
     override func viewDidLoad() {
         super.viewDidLoad()
-//        cal.
-
-        let check = defaults.object(forKey: "saveDate") as? [String:Bool] ?? [:]
-        for (key, value) in check{
-            if value == true{
-                let date = dateFormatter.date(from:key)!
-                cal.select(date)
-            }
+        let test = self.dateFormatter.date(from: "2020/05/01")
+                cal.setCurrentPage(test!, animated: true)
+                   
+           //Retrieving Data from Firebase
+        Database.database().reference().child("track").child(uuid!).child("2020/05").observeSingleEvent(of:.value, with:{(snapshot) in
+            if !snapshot.exists() { return }
+            
+               let current = snapshot.value as! [String: Bool]
+               for (key, value) in current{
+//                   let dataintemp = current[key] as! Bool
+                   if value == false{
+                   }
+                   else{
+                       self.cal.select(self.dateFormatter.date(from: "2020/05/\(key)"))
+                   }
+               }
+           })
+    }
+      
+        func calendar(_ calendar: FSCalendar, didSelect date: Date, at monthPosition: FSCalendarMonthPosition) {
+            let test = self.dateFormatter.string(from: date)
+           Database.database().reference().child("track").child(uuid!).child(test).setValue(true)//        defaults.set(check, forKey:"saveDate")
         }
-    }
-    
-    func calendar(_ calendar: FSCalendar, didSelect date: Date, at monthPosition: FSCalendarMonthPosition) {
-        let str = self.dateFormatter.string(from: date)
-
-        check[str] = true
-        defaults.set(check, forKey:"saveDate")
-    }
-    
-    func calendar(_ calendar: FSCalendar, didDeselect date: Date, at monthPosition: FSCalendarMonthPosition) {
-        let str = self.dateFormatter.string(from: date)
-
-        check[str] = false
-        defaults.set(check, forKey:"saveDate")
         
+        func calendar(_ calendar: FSCalendar, didDeselect date: Date, at monthPosition: FSCalendarMonthPosition) {
+            let test = self.dateFormatter.string(from: date)
+            Database.database().reference().child("track").child(uuid!).child(test).setValue(false)
+        }
+
+        func calendar(_ calendar: FSCalendar, shouldSelect date: Date, at monthPosition: FSCalendarMonthPosition)   -> Bool {
+              return monthPosition == .current
+          }
+ 
     }
-}
+
+

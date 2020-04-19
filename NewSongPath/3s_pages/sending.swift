@@ -16,6 +16,7 @@ class sending: UIViewController{
     @IBOutlet weak var sendingkor: UIView!
     @IBOutlet weak var textViewQT: UITextView!
     @IBOutlet weak var sendingTextField: UITextField!
+    @IBOutlet weak var pathSending: UIButton!
     
     var sendingSchedule_kor = [
         // 1 월
@@ -332,11 +333,7 @@ class sending: UIViewController{
         }
         
     }
-    
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
-    }
+
     var dateFormatter: DateFormatter = {
         let formatter = DateFormatter()
         formatter.dateFormat = "yyyy/MM/dd"
@@ -348,5 +345,11 @@ class sending: UIViewController{
         let uuid = getID().getUUID()
         let temp = dateFormatter.string(from:date)
         Database.database().reference().child("track").child(uuid!).child(temp).setValue(true)//        defaults.set(check, forKey:"saveDate")
+       
+        let alert = UIAlertController(title: "기록 완료", message: "저장되었습니다!", preferredStyle: .alert)
+        alert.addAction(UIAlertAction(title: "Okay", style: .default, handler: nil))
+        self.present(alert, animated: true)
+
+
     }
 }

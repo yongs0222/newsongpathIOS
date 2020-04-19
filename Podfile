@@ -9,6 +9,8 @@ target 'NewSongPath' do
 pod 'Firebase/Core'
 pod 'Firebase/Storage'
 #pod 'Firebase/Analytics'
+pod 'Firebase/Database'
+pod  'FirebaseAuth', '6.4.1'
 pod 'FSCalendar'
 pod 'Firebase/Messaging'
 pod "YoutubePlayer-in-WKWebView", "~> 0.2.0"

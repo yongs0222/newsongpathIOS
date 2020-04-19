@@ -8,6 +8,8 @@
 
 import UIKit
 import FSCalendar
+import FirebaseDatabase
+import FirebaseAuth
 
 class track4: UIViewController, FSCalendarDataSource, FSCalendarDelegate, FSCalendarDelegateAppearance{
     
@@ -15,7 +17,7 @@ class track4: UIViewController, FSCalendarDataSource, FSCalendarDelegate, FSCale
     
     var dateFormatter: DateFormatter = {
         let formatter = DateFormatter()
-        formatter.dateFormat = "MM/dd" // yyyy/MM/dd
+        formatter.dateFormat = "yyyy/MM/dd" // yyyy/MM/dd
         return formatter
     }()
     
@@ -52,37 +54,52 @@ class track4: UIViewController, FSCalendarDataSource, FSCalendarDelegate, FSCale
         "04/30": false,
         "04/31": false,
     ]
+    var uuid = getID().getUUID()
+
     
+//    var defaults = UserDefaults.standard
+    //    var selectedDate: [String] = []
     
-    var defaults = UserDefaults.standard
-//    var selectedDate: [String] = []
+//    var ref = Database.database().reference()
+//
+//    var monthRef = Database.database().reference().child("track").childByAutoId().child("04")
+//
+    //    var postKey = Database.database().reference().child("track").childByAutoId().key
+    
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        let check = defaults.object(forKey: "saveDate") as? [String:Bool] ?? [:]
-        for (key, value) in check{
-            if value == true{
-                let date = dateFormatter.date(from:key)!
-                cal.select(date)
-                
-                //select되어있는 값 추가되어야함.userdefault, 렘, 코어데이터 중 세이빙/로딩하는거 고민좀..
+        
+        //Retrieving Data from Firebase
+        Database.database().reference().child("track").child(uuid!).child("2020/04").observeSingleEvent(of:.value, with:{(snapshot) in
+            if !snapshot.exists() { return }
+            let current = snapshot.value as! [String: Bool]
+                        
+            for (key, value) in current{
+//                let dataintemp = current[key] as! Bool
+                if value == false{
+                }
+                else{
+                    self.cal.select(self.dateFormatter.date(from: "2020/04/\(key)"))
+                }
             }
-        }
+        })
     }
     
     func calendar(_ calendar: FSCalendar, didSelect date: Date, at monthPosition: FSCalendarMonthPosition) {
-        let str = self.dateFormatter.string(from: date)
-
-        check[str] = true
-        defaults.set(check, forKey:"saveDate")
+        let test = self.dateFormatter.string(from: date)
+        Database.database().reference().child("track").child(uuid!).child(test).setValue(true)//        defaults.set(check, forKey:"saveDate")
     }
     
     func calendar(_ calendar: FSCalendar, didDeselect date: Date, at monthPosition: FSCalendarMonthPosition) {
-        let str = self.dateFormatter.string(from: date)
-
-        check[str] = false
-        defaults.set(check, forKey:"saveDate")
-        
+        let test = self.dateFormatter.string(from: date)
+         Database.database().reference().child("track").child(uuid!).child(test).setValue(false)
+                
     }
+    
+    func calendar(_ calendar: FSCalendar, shouldSelect date: Date, at monthPosition: FSCalendarMonthPosition)   -> Bool {
+          return monthPosition == .current
+      }
 }
+
