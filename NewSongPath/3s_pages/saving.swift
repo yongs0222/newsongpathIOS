@@ -16,6 +16,8 @@ class saving: UIViewController {
     @IBOutlet weak var savingKor: UIView!
     @IBOutlet weak var savingEng: UIView!
     @IBOutlet weak var textViewQT: UITextView!
+    @IBOutlet weak var recordPath: UIButton!
+
     
     var savingSchedule_kor = [
         // 2020 년
@@ -330,6 +332,19 @@ class saving: UIViewController {
             }
         }
         
+    }
+    
+    var dateFormatter: DateFormatter = {
+        let formatter = DateFormatter()
+        formatter.dateFormat = "yyyy/MM/dd"
+        return formatter
+    }()
+
+    @IBAction func record(_ sender: UIButton){
+        let date = Date()
+        let uuid = getID().getUUID()
+        let temp = dateFormatter.string(from:date)
+        Database.database().reference().child("track").child(uuid!).child(temp).setValue(true)//        defaults.set(check, forKey:"saveDate")
     }
     
     override func didReceiveMemoryWarning() {

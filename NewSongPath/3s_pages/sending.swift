@@ -337,5 +337,16 @@ class sending: UIViewController{
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
     }
-    
+    var dateFormatter: DateFormatter = {
+        let formatter = DateFormatter()
+        formatter.dateFormat = "yyyy/MM/dd"
+        return formatter
+    }()
+
+    @IBAction func record(_ sender: UIButton){
+        let date = Date()
+        let uuid = getID().getUUID()
+        let temp = dateFormatter.string(from:date)
+        Database.database().reference().child("track").child(uuid!).child(temp).setValue(true)//        defaults.set(check, forKey:"saveDate")
+    }
 }
