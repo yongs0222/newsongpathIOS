@@ -197,15 +197,6 @@
                                             <userDefinedRuntimeAttribute type="number" keyPath="borderWidth">
                                                 <real key="value" value="1"/>
                                             </userDefinedRuntimeAttribute>
-                                            <userDefinedRuntimeAttribute type="number" keyPath="shadowRadius">
-                                                <real key="value" value="3"/>
-                                            </userDefinedRuntimeAttribute>
-                                            <userDefinedRuntimeAttribute type="number" keyPath="shadowOpacity">
-                                                <real key="value" value="1"/>
-                                            </userDefinedRuntimeAttribute>
-                                            <userDefinedRuntimeAttribute type="size" keyPath="shadowOffset">
-                                                <size key="value" width="1" height="1"/>
-                                            </userDefinedRuntimeAttribute>
                                             <userDefinedRuntimeAttribute type="color" keyPath="shadowColor">
                                                 <color key="value" cocoaTouchSystemColor="darkTextColor"/>
                                             </userDefinedRuntimeAttribute>
@@ -492,7 +483,7 @@
                         <subviews>
                             <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Loj-kk-Sec" customClass="WKYTPlayerView">
                                 <rect key="frame" x="0.0" y="88" width="414" height="725"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                             </view>
                         </subviews>
@@ -1358,9 +1349,7 @@
                                                 <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="leading" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="fiq-rm-x9n">
                                                     <rect key="frame" x="20" y="7" width="374" height="30"/>
                                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                                    <state key="normal" title="About">
-                                                        <color key="titleColor" cocoaTouchSystemColor="darkTextColor"/>
-                                                    </state>
+                                                    <state key="normal" title="About"/>
                                                     <connections>
                                                         <segue destination="uGJ-QT-B3L" kind="show" id="g9u-B8-pfG"/>
                                                     </connections>
@@ -1378,9 +1367,7 @@
                                                 <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="leading" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="i7q-8O-2O9">
                                                     <rect key="frame" x="20" y="7" width="374" height="30"/>
                                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                                    <state key="normal" title="Notification">
-                                                        <color key="titleColor" cocoaTouchSystemColor="darkTextColor"/>
-                                                    </state>
+                                                    <state key="normal" title="Notification"/>
                                                     <connections>
                                                         <segue destination="2iD-GI-P41" kind="show" id="Thi-Tc-8wg"/>
                                                     </connections>
@@ -1407,7 +1394,7 @@
         <scene sceneID="Ghd-pa-ncP">
             <objects>
                 <tableViewController id="XYz-8A-Bke" customClass="TrackActivity" customModule="New_Song_Path" customModuleProvider="target" sceneMemberID="viewController">
-                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" bounces="NO" scrollEnabled="NO" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" bouncesZoom="NO" dataMode="static" style="grouped" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="18" sectionFooterHeight="18" id="1AP-gr-DmR">
+                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" bounces="NO" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" bouncesZoom="NO" dataMode="static" style="grouped" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="18" sectionFooterHeight="18" id="1AP-gr-DmR">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" flexibleMinX="YES" widthSizable="YES" flexibleMaxX="YES" flexibleMinY="YES" heightSizable="YES" flexibleMaxY="YES"/>
                         <color key="backgroundColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
@@ -1423,9 +1410,7 @@
                                             <subviews>
                                                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="leading" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="rhe-7I-hOA">
                                                     <rect key="frame" x="20" y="7" width="374" height="30"/>
-                                                    <state key="normal" title="1월">
-                                                        <color key="titleColor" cocoaTouchSystemColor="darkTextColor"/>
-                                                    </state>
+                                                    <state key="normal" title="1월"/>
                                                     <connections>
                                                         <segue destination="bSa-Lo-MC8" kind="show" id="fwJ-8q-J5f"/>
                                                     </connections>
@@ -1451,9 +1436,7 @@
                                             <subviews>
                                                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="leading" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="CSs-bm-Ey9">
                                                     <rect key="frame" x="20" y="7" width="374" height="30"/>
-                                                    <state key="normal" title="2월">
-                                                        <color key="titleColor" cocoaTouchSystemColor="darkTextColor"/>
-                                                    </state>
+                                                    <state key="normal" title="2월"/>
                                                     <connections>
                                                         <segue destination="AIO-lU-c1V" kind="show" id="dr2-av-ksc"/>
                                                     </connections>
@@ -1479,9 +1462,7 @@
                                             <subviews>
                                                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="leading" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="2KB-sQ-6mm">
                                                     <rect key="frame" x="20" y="7" width="374" height="30"/>
-                                                    <state key="normal" title="3월">
-                                                        <color key="titleColor" cocoaTouchSystemColor="darkTextColor"/>
-                                                    </state>
+                                                    <state key="normal" title="3월"/>
                                                     <connections>
                                                         <segue destination="CPH-KF-wUk" kind="show" id="gw9-Tg-9fe"/>
                                                     </connections>
@@ -1507,9 +1488,7 @@
                                             <subviews>
                                                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="leading" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="fZa-wr-3fu">
                                                     <rect key="frame" x="20" y="7" width="374" height="30"/>
-                                                    <state key="normal" title="4월">
-                                                        <color key="titleColor" cocoaTouchSystemColor="darkTextColor"/>
-                                                    </state>
+                                                    <state key="normal" title="4월"/>
                                                     <connections>
                                                         <segue destination="6e9-Dh-TiS" kind="show" id="8e8-jr-kUd"/>
                                                     </connections>
@@ -1535,9 +1514,7 @@
                                             <subviews>
                                                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="leading" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="GVx-qp-2Pd">
                                                     <rect key="frame" x="20" y="7" width="374" height="30"/>
-                                                    <state key="normal" title="5월">
-                                                        <color key="titleColor" cocoaTouchSystemColor="darkTextColor"/>
-                                                    </state>
+                                                    <state key="normal" title="5월"/>
                                                     <connections>
                                                         <segue destination="cBc-Zh-qA1" kind="show" id="zM1-Gz-6VB"/>
                                                     </connections>
@@ -1563,9 +1540,7 @@
                                             <subviews>
                                                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="leading" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="wuw-of-rbT">
                                                     <rect key="frame" x="20" y="7" width="374" height="30"/>
-                                                    <state key="normal" title="6월">
-                                                        <color key="titleColor" cocoaTouchSystemColor="darkTextColor"/>
-                                                    </state>
+                                                    <state key="normal" title="6월"/>
                                                     <connections>
                                                         <segue destination="wjR-hO-V2e" kind="show" id="eW0-5P-0Ho"/>
                                                     </connections>
@@ -1591,9 +1566,7 @@
                                             <subviews>
                                                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="leading" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="oUN-H7-s7s">
                                                     <rect key="frame" x="20" y="7" width="374" height="30"/>
-                                                    <state key="normal" title="7월">
-                                                        <color key="titleColor" cocoaTouchSystemColor="darkTextColor"/>
-                                                    </state>
+                                                    <state key="normal" title="7월"/>
                                                     <connections>
                                                         <segue destination="gC8-e6-4Oi" kind="show" id="UI2-Y8-1Ks"/>
                                                     </connections>
@@ -1619,9 +1592,7 @@
                                             <subviews>
                                                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="leading" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="3fN-yZ-QLz">
                                                     <rect key="frame" x="20" y="7" width="374" height="30"/>
-                                                    <state key="normal" title="8월">
-                                                        <color key="titleColor" cocoaTouchSystemColor="darkTextColor"/>
-                                                    </state>
+                                                    <state key="normal" title="8월"/>
                                                     <connections>
                                                         <segue destination="Hrc-7Y-91b" kind="show" id="eI1-c0-jPn"/>
                                                     </connections>
@@ -1647,9 +1618,7 @@
                                             <subviews>
                                                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="leading" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="czi-He-xGd">
                                                     <rect key="frame" x="20" y="7" width="374" height="30"/>
-                                                    <state key="normal" title="9월">
-                                                        <color key="titleColor" cocoaTouchSystemColor="darkTextColor"/>
-                                                    </state>
+                                                    <state key="normal" title="9월"/>
                                                     <connections>
                                                         <segue destination="XNm-VX-ggR" kind="show" id="woP-yC-RX5"/>
                                                     </connections>
@@ -1675,9 +1644,7 @@
                                             <subviews>
                                                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="leading" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="upX-3p-kQy">
                                                     <rect key="frame" x="20" y="7" width="374" height="30"/>
-                                                    <state key="normal" title="10월">
-                                                        <color key="titleColor" cocoaTouchSystemColor="darkTextColor"/>
-                                                    </state>
+                                                    <state key="normal" title="10월"/>
                                                     <connections>
                                                         <segue destination="5LD-bp-3oS" kind="show" id="dRv-37-HY8"/>
                                                     </connections>
@@ -1703,9 +1670,7 @@
                                             <subviews>
                                                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="leading" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Ghx-n5-o6K">
                                                     <rect key="frame" x="20" y="7" width="374" height="30"/>
-                                                    <state key="normal" title="11월">
-                                                        <color key="titleColor" cocoaTouchSystemColor="darkTextColor"/>
-                                                    </state>
+                                                    <state key="normal" title="11월"/>
                                                     <connections>
                                                         <segue destination="Ocr-f3-9EO" kind="show" id="ly7-WE-6dV"/>
                                                     </connections>
@@ -1731,9 +1696,7 @@
                                             <subviews>
                                                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="leading" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="4JB-mP-qo6">
                                                     <rect key="frame" x="20" y="7" width="374" height="30"/>
-                                                    <state key="normal" title="12월">
-                                                        <color key="titleColor" cocoaTouchSystemColor="darkTextColor"/>
-                                                    </state>
+                                                    <state key="normal" title="12월"/>
                                                     <connections>
                                                         <segue destination="uM4-Gn-5y3" kind="show" id="6fA-gx-KRe"/>
                                                     </connections>
@@ -1775,6 +1738,13 @@
                     </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="kYK-K8-SNe" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+                <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" ambiguous="YES" id="HzI-Xe-cao">
+                    <rect key="frame" x="0.0" y="0.0" width="414" height="44"/>
+                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                    <viewLayoutGuide key="safeArea" id="bBT-AR-qUI"/>
+                    <viewLayoutGuide key="contentLayoutGuide" id="i35-hl-idF"/>
+                    <viewLayoutGuide key="frameLayoutGuide" id="43m-QS-eES"/>
+                </scrollView>
             </objects>
             <point key="canvasLocation" x="1261" y="-1957"/>
         </scene>
@@ -2259,7 +2229,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="C80-Gw-t4v" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-613" y="-14"/>
+            <point key="canvasLocation" x="-1688" y="-92"/>
         </scene>
     </scenes>
     <resources>

@@ -31,10 +31,10 @@ class track12: UIViewController, FSCalendarDataSource, FSCalendarDelegate, FSCal
         
            
            //Retrieving Data from Firebase
-        Database.database().reference().child("track").child(uuid!).child("2020/12").observeSingleEvent(of:.value, with:{(snapshot) in
+        Database.database().reference().child("track").child(uuid!).child("2020/12").observe(.value, with:{(snapshot) in
             if !snapshot.exists() { return }
-            
-               let current = snapshot.value as! [String: Bool]
+            //            let current = snapshot.value as! [String: Bool]
+            let current = snapshot.value as? [String:Bool] ?? [String:Bool]()
                for (key, value) in current{
 //                   let dataintemp = current[key] as! Bool
                    if value == false{
@@ -60,7 +60,21 @@ class track12: UIViewController, FSCalendarDataSource, FSCalendarDelegate, FSCal
               return monthPosition == .current
           }
 
-
+    func calendar(_ calendar: FSCalendar, appearance: FSCalendarAppearance, titleDefaultColorFor date: Date) -> UIColor? {
+        
+        let defaultColor = appearance.titleDefaultColor
+        
+        if #available(iOS 12.0, *) {
+            if self.traitCollection.userInterfaceStyle == .dark {
+                return .orange
+            } else {
+                return defaultColor
+            }
+        } else {
+            return defaultColor
+        }
+        
+    }
     }
 
 

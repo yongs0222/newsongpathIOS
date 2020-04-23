@@ -42,25 +42,26 @@ class TrackActivity: UITableViewController {
     var numofOct = 0
     var numofNov = 0
     var numofDec = 0
-
+    
     var progress = 0.0
     var uuid = getID().getUUID()
-
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-        
+
         let monthRef = Database.database().reference().child("track").child(uuid!)
         
         monthRef.child("2020/01").observe(.value, with:{(snapshot) in
             if !snapshot.exists() { return }
             
-            let current = snapshot.value as! [String: Bool]
+//            let current = snapshot.value as! [String: Bool]
+            let current = snapshot.value as? [String:Bool] ?? [String:Bool]()
+
             for (_, value) in current{ //for(key, value)
                 if value == true{
                     self.numofJan += 1
                 }
             }
-            print(self.numofJan)
             self.progress = Double(self.numofJan) / 31.0
             self.progressBar1.setProgress(Float(self.progress) , animated: false)
             self.numofJan = 0
@@ -69,7 +70,9 @@ class TrackActivity: UITableViewController {
         monthRef.child("2020/02").observe(.value, with:{(snapshot) in
             if !snapshot.exists() { return }
             
-            let current = snapshot.value as! [String: Bool]
+//            let current = snapshot.value as! [String: Bool]
+            let current = snapshot.value as? [String:Bool] ?? [String:Bool]()
+
             for (_, value) in current{ //for(key, value)
                 if value == true{
                     self.numofFeb += 1
@@ -77,13 +80,15 @@ class TrackActivity: UITableViewController {
             }
             self.progress = Double(self.numofFeb) / 29.0
             self.progressBar2.setProgress(Float(self.progress) , animated: false)
-               self.numofFeb = 0
+            self.numofFeb = 0
         })
         
         monthRef.child("2020/03").observe(.value, with:{(snapshot) in
             if !snapshot.exists() { return }
             
-            let current = snapshot.value as! [String: Bool]
+//            let current = snapshot.value as! [String: Bool]
+            let current = snapshot.value as? [String:Bool] ?? [String:Bool]()
+
             for (_, value) in current{ //for(key, value)
                 if value == true{
                     self.numofMar += 1
@@ -91,28 +96,30 @@ class TrackActivity: UITableViewController {
             }
             self.progress = Double(self.numofMar) / 31.0
             self.progressBar3.setProgress(Float(self.progress) , animated: false)
-              self.numofMar = 0
+            self.numofMar = 0
         })
         
         
         monthRef.child("2020/04").observe(.value, with:{(snapshot) in
             if !snapshot.exists() { return }
             
-            let current = snapshot.value as! [String: Bool]
-            for (_, value) in current{ //for(key, value)
+            let current = snapshot.value as? [String:Bool] ?? [String:Bool]()
+            for (_, value) in current{ //for(key, value
                 if value == true{
                     self.numofApr += 1
                 }
             }
             self.progress = Double(self.numofApr) / 30.0
             self.progressBar4.setProgress(Float(self.progress) , animated: false)
-             self.numofApr = 0
+            self.numofApr = 0
         })
         
         monthRef.child("2020/05").observe(.value, with:{(snapshot) in
             if !snapshot.exists() { return }
             
-            let current = snapshot.value as! [String: Bool]
+//            let current = snapshot.value as! [String: Bool]
+            let current = snapshot.value as? [String:Bool] ?? [String:Bool]()
+
             for (_, value) in current{ //for(key, value)
                 if value == true{
                     self.numofMay += 1
@@ -120,13 +127,15 @@ class TrackActivity: UITableViewController {
             }
             self.progress = Double(self.numofMay) / 31.0
             self.progressBar5.setProgress(Float(self.progress) , animated: false)
-              self.numofMay = 0
+            self.numofMay = 0
         })
         
         monthRef.child("2020/06").observe(.value, with:{(snapshot) in
             if !snapshot.exists() { return }
             
-            let current = snapshot.value as! [String: Bool]
+//            let current = snapshot.value as! [String: Bool]
+            let current = snapshot.value as? [String:Bool] ?? [String:Bool]()
+
             for (_, value) in current{ //for(key, value)
                 if value == true{
                     self.numofJun += 1
@@ -140,7 +149,9 @@ class TrackActivity: UITableViewController {
         monthRef.child("2020/07").observe(.value, with:{(snapshot) in
             if !snapshot.exists() { return }
             
-            let current = snapshot.value as! [String: Bool]
+//            let current = snapshot.value as! [String: Bool]
+            let current = snapshot.value as? [String:Bool] ?? [String:Bool]()
+
             for (_, value) in current{ //for(key, value)
                 if value == true{
                     self.numofJul += 1
@@ -148,13 +159,15 @@ class TrackActivity: UITableViewController {
             }
             self.progress = Double(self.numofJul) / 31.0
             self.progressBar7.setProgress(Float(self.progress) , animated: false)
-             self.numofJul = 0
+            self.numofJul = 0
         })
         
         monthRef.child("2020/08").observe(.value, with:{(snapshot) in
             if !snapshot.exists() { return }
             
-            let current = snapshot.value as! [String: Bool]
+//            let current = snapshot.value as! [String: Bool]
+            let current = snapshot.value as? [String:Bool] ?? [String:Bool]()
+
             for (_, value) in current{ //for(key, value)
                 if value == true{
                     self.numofAug += 1
@@ -168,7 +181,9 @@ class TrackActivity: UITableViewController {
         monthRef.child("2020/09").observe(.value, with:{(snapshot) in
             if !snapshot.exists() { return }
             
-            let current = snapshot.value as! [String: Bool]
+//            let current = snapshot.value as! [String: Bool]
+            let current = snapshot.value as? [String:Bool] ?? [String:Bool]()
+
             for (_, value) in current{ //for(key, value)
                 if value == true{
                     self.numofSep += 1
@@ -182,13 +197,15 @@ class TrackActivity: UITableViewController {
         monthRef.child("2020/10").observe(.value, with:{(snapshot) in
             if !snapshot.exists() { return }
             
-            let current = snapshot.value as! [String: Bool]
+//            let current = snapshot.value as! [String: Bool]
+            let current = snapshot.value as? [String:Bool] ?? [String:Bool]()
+
             for (_, value) in current{ //for(key, value)
                 if value == true{
                     self.numofOct += 1
                 }
             }
-//            print("oct :\(self.numofOct)")
+            //            print("oct :\(self.numofOct)")
             self.progress = Double(self.numofOct) / 30.0
             self.progressBar10.setProgress(Float(self.progress) , animated: false)
             self.numofOct = 0
@@ -197,7 +214,9 @@ class TrackActivity: UITableViewController {
         monthRef.child("2020/11").observe(.value, with:{(snapshot) in
             if !snapshot.exists() { return }
             
-            let current = snapshot.value as! [String: Bool]
+//            let current = snapshot.value as! [String: Bool]
+            let current = snapshot.value as? [String:Bool] ?? [String:Bool]()
+
             for (_, value) in current{ //for(key, value)
                 if value == true{
                     self.numofNov += 1
@@ -211,7 +230,9 @@ class TrackActivity: UITableViewController {
         monthRef.child("2020/12").observe(.value, with:{(snapshot) in
             if !snapshot.exists() { return }
             
-            let current = snapshot.value as! [String: Bool]
+//            let current = snapshot.value as! [String: Bool]
+            let current = snapshot.value as? [String:Bool] ?? [String:Bool]()
+
             for (_, value) in current{ //for(key, value)
                 if value == true{
                     self.numofDec += 1
@@ -229,5 +250,5 @@ class TrackActivity: UITableViewController {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
     }
-
+    
 }

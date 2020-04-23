@@ -20,9 +20,9 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
         
-        Thread.sleep(forTimeInterval: 2.0)
+        Thread.sleep(forTimeInterval: 1.2)
 
-        let storyboard = UIStoryboard(name: "Main", bundle: nil)
+             let storyboard = UIStoryboard(name: "Main", bundle: nil)
         
         let vc = storyboard.instantiateInitialViewController()
         window = UIWindow(frame: UIScreen.main.bounds)
@@ -84,3 +84,4 @@ extension AppDelegate : MessagingDelegate {
 //    }
 //    return nil
 //}
+
